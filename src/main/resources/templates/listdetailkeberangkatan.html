@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>"
+   
+        <title>terdaftar</title>
+        
+        <link rel = "stylesheet" href="assets/css/index.css">
+    </head>
+    <body>
+    <div id ="id">
+    <h1 class="Color1"> Keberangkatan yang tersedia </h1> 
+    <table class="table">
+    
+	<tr class="thead" >  
+        <td scope ="col"> Id</td> 
+   		<td scope ="raw">deskripsi</td>
+		<td scope ="raw"> waktu</td> 
+		<td scope ="raw"> perusahaan</td> 
+		<td scope ="raw"> kelas</td> 
+		<td scope ="raw"> harga</td> 
+    </tr>
+
+	<trclass="thead" th:each= keberangkatan:${data}>  
+		<td th:text = ${keberangkatan.id}></td> 
+		<td th:text = ${keberangkatan.deskripsi}></td>
+		<td th:text = ${keberangkatan.waktu}></td>  
+		<td th:text = ${keberangkatan.perusahaan}></td> 
+		<td th:text = ${keberangkatan.kelas}></td> 
+		<td th:text = ${keberangkatan.harga}></td>    
+      
+    </tr> 
+   
+    </body>
+    </table>
+</body>
+</html>
