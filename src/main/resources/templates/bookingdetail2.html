@@ -21,16 +21,16 @@
 		<td scope ="col">kelas</td>
 		<td scope ="col">harga</td>            
     </tr>
-        <tr cope ="col" th:each= "booking:${data}">
-        <td th:text = "${booking.id}"></td>
-      	 <td th:text = "${booking.getnik}"></td>
- 		<td th:text = "${booking.getnama}"></td>
- 		<td th:text = "${booking.getId_Keberangkatan}"></td>
- 		<td th:text = "${booking.getWaktu}"></td>
- 		<td th:text = "${booking.getPerusahaan}"></td>
-		<td th:text = "${booking.getKelas}"></td>
-    	 <td th:text = "${booking.getHarga}"></td>
-</tr>
+     <tr>  
+        <td scope ="col" th:text = "${data.id}">
+      	 <td scope ="col" th:text = "${data.nik.nik}">
+ 		<td scope ="col" th:text = "${data.nik.nama}">
+ 		<td scope ="col" th:text = "${data.id_keberangkatan.id}">
+ 		<td scope ="col" th:text = "${data.id_keberangkatan.tanggal}">
+ 		<td scope ="col" th:text = "${data.id_keberangkatan.no_polisi.nama_perusahaan.nama}">
+		<td scope ="col" th:text = "${data.id_keberangkatan.kelas}">
+    	 <td scope ="col" th:text = "${data.id_keberangkatan.harga}">
+	</tr>
  
         
     </body>
