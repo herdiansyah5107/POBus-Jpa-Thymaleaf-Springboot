@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>"
+   
+        <title>terdaftar</title>
+        
+        <link rel = "stylesheet" href="assets/css/index.css">
+    </head>
+    <body>
+    <div id ="id">
+    <h1 class="Color1"> Anda telah terdaftar, dengan data berikut ; </h1> 
+    <table class="table">
+    
+	<tr class="thead" th:each= penumpang:${penumpangData}>  
+        <td scope ="col"> NIK</td> 
+   		<td th:text = ${penumpang.nik}></td> 
+    </tr>
+
+	<trclass="thead" th:each= penumpang:${penumpangData}>  
+		 <td scope ="raw">Nama</td>   
+        <td th:text = ${penumpang.nama}></td>
+   	
+    </tr>
+		<trclass="thead" th:each= penumpang:${penumpangData}>  
+      	 <td scope ="raw"> Telpon</td>   
+    	<td th:text = ${penumpang.telpon}></td>
+    </tr>
+    
+        
+    </body>
+    </table>
+</body>
+</html>
