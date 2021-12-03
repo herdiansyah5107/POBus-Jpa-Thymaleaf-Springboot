@@ -14,6 +14,9 @@ public interface penumpangRepository extends JpaRepository<Penumpang, String>{
 	List<Penumpang> findByNik(String hayolo);
 
 
+	List<Penumpang> getByNik(String nik);
+
+
 
 
 

@@ -12,21 +12,21 @@
     <h1 class="Color1"> Anda telah terdaftar, dengan data berikut ; </h1> 
     <table class="table">
     
-	<tr class="thead" th:each= penumpang:${data}>  
+	<tr class="thead" th:each= penumpang:${penumpangData}>  
         <td scope ="col"> NIK</td> 
    		<td th:text = ${penumpang.nik}></td> 
     </tr>
 
-	<trclass="thead" th:each= penumpang:${data}>  
+	<trclass="thead" th:each= penumpang:${penumpangData}>  
 		 <td scope ="raw">Nama</td>   
         <td th:text = ${penumpang.nama}></td>
    	
     </tr>
+		<trclass="thead" th:each= penumpang:${penumpangData}>  
       	 <td scope ="raw"> Telpon</td>   
     	<td th:text = ${penumpang.telpon}></td>
     </tr>
     
-  
         
     </body>
     </table>

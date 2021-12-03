@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.busspringboot.model.Booking;
-import com.busspringboot.model.BookingDetail;
+
 
 import com.busspringboot.model.Keberangkatan;
 import com.busspringboot.model.Keberangkatandetail;
 import com.busspringboot.model.Penumpang;
-import com.busspringboot.model.cariKeberangkatan;
+
 import com.busspringboot.repository.BookingRepository;
 import com.busspringboot.repository.KeberangkatanRepository;
 import com.busspringboot.repository.busRepository;
@@ -57,7 +57,7 @@ public class busController {
 			output = "kenihilan";
 		}else {
 		penumpangRepo.findByNik(nik);		
-		model.addAttribute("data", hasil);	
+		model.addAttribute("penumpangData", hasil);	
 		output= "detailpenumpang";
 		}
 		return output;
@@ -66,28 +66,31 @@ public class busController {
 //untuk daftar penumpang
 	@GetMapping("/daftar")
 	public String getFormPenumpang(Model model){
-		model.addAttribute("formData", new Penumpang());
+		model.addAttribute("penumpangData", new Penumpang());
 		return "formpenumpangbaru";
 	}
 //untuk daftar penumpang
 	@PostMapping("/createpenumpang")
-	public String createPenumpang(@ModelAttribute("formData")Penumpang formData){
-	penumpangRepo.save(formData);
-	return "redirect:/daftar";
+	public String createPenumpang(@ModelAttribute("penumpangData")Penumpang penumpangData,Model model){
+//	String nik =penumpangData.getNik();	
+//	List<Penumpang> hasil= penumpangRepo.findByNik(nik);	
+	penumpangRepo.save(penumpangData);	
+//	model.addAttribute("data", hasil);	
+	return "detailpenumpang";
 	}
 	
 //untuk mencari keberangkatan
 	@GetMapping("/carikeberangkatan")
 	public String getKeberangkatan(Model model) {
-	model.addAttribute("formBerangkat", new cariKeberangkatan() );
+	model.addAttribute("formBerangkat", new Keberangkatan() );
 	return "carikeberangkatan";
 	}
 //untuk mencari detail keberangkatan setelah formBerangkat
-	@RequestMapping("/checkkeberangkatan")
+	@PostMapping("/checkkeberangkatan")
 	public String getBerangkat(@ModelAttribute("formBerangkat")
-	cariKeberangkatan formBerangkat, Model model) {
+	Keberangkatan formBerangkat, Model model) {
 	String tanggal = formBerangkat.getTanggal();
-	String terminal_awal = formBerangkat.getTerminal();
+	String terminal_awal = formBerangkat.getId_jurusan().getTerminal_awal();
 	List<Keberangkatandetail> hasil=keberangkatanRepo.getDetail(terminal_awal,tanggal);
 	String output;
 		if(hasil.size()==0) {
@@ -106,17 +109,40 @@ public class busController {
 	model.addAttribute("dataBooking",new Booking());
 		return "formbooking";
 	}
+	
+	
+//versi pak paulus	
 	@PostMapping("/pesanbooking")
 	public String getBooking(@ModelAttribute("dataBooking")Booking dataBooking,
 	Model model){
 	long id_keberangkatan = dataBooking.getId_keberangkatan().getId();
-	String nik = dataBooking.getNik().getNik();	
+	String nik = dataBooking.getNik().getNik();
+	List<Penumpang>penumpangSementara=penumpangRepo.getByNik(nik);
+	dataBooking.setNik(penumpangSementara.get(0));
+	Keberangkatan keberangkatanSementara =keberangkatanRepo.getById(id_keberangkatan);
+	dataBooking.setId_keberangkatan(keberangkatanSementara);
 	bookingRepo.save(dataBooking);
-	List<BookingDetail> hasil = bookingRepo.getDetail(id_keberangkatan,nik);
+	List<Booking> hasilSimpan = bookingRepo.findByNik(dataBooking.getNik());
+	model.addAttribute("data", hasilSimpan.get(hasilSimpan.size()-1));
+	return "bookingdetail2";
 	
-	model.addAttribute("data",hasil);
-	return "bookingdetail";
 	}
+	
+//	@PostMapping("/pesanbooking")
+//	public String getBooking(@ModelAttribute("dataBooking")Booking dataBooking,
+//	Model model){
+//	long id_keberangkatan = dataBooking.getId_keberangkatan().getId();
+//	String nik = dataBooking.getNik().getNik();	
+//	bookingRepo.save(dataBooking);
+//	List<BookingDetail> hasil = bookingRepo.getDetail(id_keberangkatan,nik);
+//	model.addAttribute("data",hasil);
+//	return "bookingdetail";
+//	}
+	
+	
+	
+	
+	
 //Membatalkan booking
 	@GetMapping("/cancel")
 	public String cancelBooking(Model model) {
