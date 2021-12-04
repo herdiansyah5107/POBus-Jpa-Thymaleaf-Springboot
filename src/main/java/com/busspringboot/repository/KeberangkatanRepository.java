@@ -31,6 +31,8 @@ public interface KeberangkatanRepository extends JpaRepository<Keberangkatan, Lo
 			+ "GROUP by keberangkatan.`id`", nativeQuery =true)
 			List<KursiKosong> getAll();
 
+	
+
 
 
 	

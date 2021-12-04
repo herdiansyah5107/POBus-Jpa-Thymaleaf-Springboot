@@ -3,8 +3,8 @@ package com.busspringboot.controller;
 import java.util.List;
 
 import com.busspringboot.model.Booking;
+import com.busspringboot.model.BookingDetail;
 import com.busspringboot.model.Keberangkatan;
-
 import com.busspringboot.model.KursiKosong;
 import com.busspringboot.model.Penumpang;
 import com.busspringboot.repository.BookingRepository;
@@ -39,20 +39,25 @@ public class bookingController {
 	model.addAttribute("data",keberangkatan);
 	return "formbooking";
 	}
-    //menampilkan keberhasilan pemesanan	
-	@PostMapping("/pesanbooking")
-	public String getBooking(@ModelAttribute("dataBooking")Booking dataBooking,
-	Model model){
-	long id_keberangkatan = dataBooking.getId_keberangkatan().getId();
-	String nik = dataBooking.getNik().getNik();
-	List<Penumpang>penumpangSementara=penumpangRepo.getByNik(nik);
-	dataBooking.setNik(penumpangSementara.get(0));
-	Keberangkatan keberangkatanSementara =keberangkatanRepo.getById(id_keberangkatan);
-	dataBooking.setId_keberangkatan(keberangkatanSementara);
-	bookingRepo.save(dataBooking);
-	List<Booking> hasilSimpan = bookingRepo.findByNik(dataBooking.getNik());
-	model.addAttribute("data", hasilSimpan.get(hasilSimpan.size()-1));
-	return "bookingdetail2";
-	}
+     //menampilkan keberhasilan pemesanan	
+	 @PostMapping("/pesanbooking")
+	 public String getBooking(@ModelAttribute("dataBooking")Booking dataBooking,
+	 Model model){
+	 long id_keberangkatan = dataBooking.getId_keberangkatan().getId();
+	 String nik = dataBooking.getNik().getNik();
+	 List<Penumpang>penumpangSementara=penumpangRepo.getByNik(nik);
+	 if(penumpangSementara.size()==0){
+	 	return "kenihilan";
+	 }
+	 dataBooking.setNik(penumpangSementara.get(0));
+	 Keberangkatan keberangkatanSementara =keberangkatanRepo.getById(id_keberangkatan);
+	 dataBooking.setId_keberangkatan(keberangkatanSementara);
+	 bookingRepo.save(dataBooking);
+	 List<Booking> hasilSimpan = bookingRepo.findByNik(dataBooking.getNik());
+	 model.addAttribute("data", hasilSimpan.get(hasilSimpan.size()-1));
+	 return "bookingdetail2";
+	 }
+		
+
     
 }
