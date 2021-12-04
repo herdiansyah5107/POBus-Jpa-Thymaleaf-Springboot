@@ -41,11 +41,11 @@ public class busController {
 	
 	
 	//untuk login penumpang
-	@GetMapping("/loginpenumpang")
-	public String getForm(Model model){
-		model.addAttribute("penumpangData",new Penumpang());
-		return "formlogin";
-	}
+	// @GetMapping("/loginpenumpang")
+	// public String getForm(Model model){
+	// 	model.addAttribute("penumpangData",new Penumpang());
+	// 	return "formlogin";
+	// }
 	//untuk mencheck penumpang
 	@RequestMapping("/checkpenumpang")
 	public String getPenumpang (@ModelAttribute("penumpangData")
