@@ -19,7 +19,7 @@ public interface BookingRepository extends JpaRepository<Booking, Long>{
 			+ "INNER JOIN penumpang on booking.nik=penumpang.nik "
 			+ "INNER join keberangkatan on booking.id_keberangkatan=keberangkatan.id "
 			+ "INNER join bus on keberangkatan.no_polisi = bus.no_polisi "
-			+ "where booking.id_keberangkatan =?1 && booking.nik =?2",nativeQuery  =true)
+			+ "where booking.id_keberangkatan =?1 && booking.nik =?2 ",nativeQuery  =true)
 			List<BookingDetail> getDetail(long id_keberangkatan, String nik);
 
 	

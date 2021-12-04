@@ -60,6 +60,9 @@ public class bookingController {
 	//untuk mencari keberangkatan
 	@GetMapping("/carikeberangkatan")
 	public String getKeberangkatan(Model model) {
+	model.addAttribute("dataBooking",new Booking());
+	List<KursiKosong>keberangkatan=keberangkatanRepo.getAll();
+	model.addAttribute("data",keberangkatan);
 	model.addAttribute("formBerangkat", new Keberangkatan() );
 	return "carikeberangkatan";
 	}
