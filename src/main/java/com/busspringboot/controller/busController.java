@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.busspringboot.model.Booking;
+
 
 
 import com.busspringboot.model.Keberangkatan;
@@ -38,6 +38,13 @@ public class busController {
 	
 	@Autowired
 	BookingRepository bookingRepo;
+	
+	
+	//untuk menu awal
+	@GetMapping("bustrapel")
+	public String getbustrapel() {
+		return "index";
+	}
 	
 	
 	//untuk login penumpang
@@ -107,23 +114,7 @@ public class busController {
 		
 
 
-//Membatalkan booking
-	@GetMapping("/cancel")
-	public String cancelBooking(Model model) {
-	model.addAttribute("dataBooking", new Booking());
-	return "formcancel";
-		}
-	
 
-	@PostMapping("/cancelBooking")
-	public String BookingCancel(@ModelAttribute("dataBooking")Booking dataBooking,
-	Model model){
-	long id = dataBooking.getId(); 
-	bookingRepo.deleteById(id);
-	return "cancelmassage";
-
-
-	}
 }
 
 	

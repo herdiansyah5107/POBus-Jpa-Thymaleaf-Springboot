@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.busspringboot.model.Booking;
 import com.busspringboot.model.Keberangkatan;
+
+import com.busspringboot.model.KursiKosong;
 import com.busspringboot.model.Penumpang;
 import com.busspringboot.repository.BookingRepository;
 import com.busspringboot.repository.KeberangkatanRepository;
@@ -30,10 +32,12 @@ public class bookingController {
 
 
     //untuk memnuat booking pemesanan 
-	@GetMapping("/booking")
+	@GetMapping("/formbooking")
 	public String getBooking(Model model){
 	model.addAttribute("dataBooking",new Booking());
-		return "formbooking";
+	List<KursiKosong>keberangkatan=keberangkatanRepo.getAll();
+	model.addAttribute("data",keberangkatan);
+	return "formbooking";
 	}
     //menampilkan keberhasilan pemesanan	
 	@PostMapping("/pesanbooking")
