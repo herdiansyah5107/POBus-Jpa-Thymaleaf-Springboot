@@ -45,9 +45,12 @@ public class bookingController {
 	 long id_keberangkatan = dataBooking.getId_keberangkatan().getId();
 	 String nik = dataBooking.getNik().getNik();
 	 List<Penumpang>penumpangSementara=penumpangRepo.getByNik(nik);
+	 List<KursiKosong>fullTank = keberangkatanRepo.getKeberangkatanFull();
 	 if(penumpangSementara.size()==0){
 	 	return "kenihilan";
-	 }
+	 }else if(fullTank.size() != 0){
+		return "kenihilankeberangkatan";
+	 }else	{
 	 dataBooking.setNik(penumpangSementara.get(0));
 	 Keberangkatan keberangkatanSementara =keberangkatanRepo.getById(id_keberangkatan);
 	 dataBooking.setId_keberangkatan(keberangkatanSementara);
@@ -56,6 +59,7 @@ public class bookingController {
 	 model.addAttribute("data", hasilSimpan.get(hasilSimpan.size()-1));
 	 return "bookingdetail2";
 	 }
+	}
 	
 	//untuk mencari keberangkatan
 	@GetMapping("/carikeberangkatan")
