@@ -3,7 +3,6 @@ package com.busspringboot.controller;
 import java.util.List;
 
 import com.busspringboot.model.Booking;
-import com.busspringboot.model.BookingDetail;
 import com.busspringboot.model.Keberangkatan;
 import com.busspringboot.model.KursiKosong;
 import com.busspringboot.model.Penumpang;
