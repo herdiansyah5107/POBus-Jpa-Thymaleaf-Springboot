@@ -3,6 +3,8 @@ package com.busspringboot.controller;
 import java.util.List;
 
 import com.busspringboot.model.Booking;
+
+
 import com.busspringboot.model.Keberangkatan;
 import com.busspringboot.model.Keberangkatandetail;
 import com.busspringboot.model.KursiKosong;
@@ -51,16 +53,26 @@ public class bookingController {
 	 dataBooking.setNik(penumpangSementara.get(0));
 	 Keberangkatan keberangkatanSementara =keberangkatanRepo.getById(id_keberangkatan);
 	 dataBooking.setId_keberangkatan(keberangkatanSementara);
-	 bookingRepo.save(dataBooking);
-	 List<Booking> hasilSimpan = bookingRepo.findByNik(dataBooking.getNik());
-	 model.addAttribute("data", hasilSimpan.get(hasilSimpan.size()-1));
-	 return "bookingdetail2";
-	 }
+		List<Keberangkatandetail> sisaKursi= bookingRepo.getDetail(id_keberangkatan);
+	 	if(sisaKursi.isEmpty()){
+			 return "kenihilan";
+		 }else{
+			bookingRepo.save(dataBooking);
+			List<Booking> hasilSimpan = bookingRepo.findByNik(dataBooking.getNik());
+			model.addAttribute("data", hasilSimpan.get(hasilSimpan.size()-1));
+			return "bookingdetail2";
+			}
+		 }
+	
 	
 	//untuk mencari keberangkatan
 	@GetMapping("/carikeberangkatan")
 	public String getKeberangkatan(Model model) {
+	model.addAttribute("dataBooking", new Booking() );
+	List<KursiKosong>keberangkatan=keberangkatanRepo.getAll();
+	model.addAttribute("data",keberangkatan);
 	model.addAttribute("formBerangkat", new Keberangkatan() );
+
 	return "carikeberangkatan";
 	}
 
