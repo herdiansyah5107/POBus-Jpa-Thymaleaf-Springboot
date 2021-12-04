@@ -7,10 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap" rel="stylesheet">
 
-    <title>Wisata Juara Trapel</title>
+    <title>Juara TraPel - Covid-19</title>
 
 
     <!-- Additional CSS Files -->
@@ -58,10 +57,17 @@ https://templatemo.com/tm-571-hexashop
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
+<<<<<<< HEAD
                             <li class="scroll-to-section"><a href="bustrapel" >Home</a></li>
                             <li class="scroll-to-section"><a href="bustrapel">Promo</a></li>
                             <li class="scroll-to-section"><a href="bustrapel">Testimoni</a></li>
                             <li class="scroll-to-section"><a href="formbooking">Booking Tiket</a></li>
+=======
+                            <li class="scroll-to-section"><a href="bustrapel">Home</a></li>
+                            <li class="scroll-to-section"><a href="bustrapel">Promo</a></li>
+                            <li class="scroll-to-section"><a href="bustrapel">Testimoni</a></li>
+                            <li class="scroll-to-section"><a href="carikeberangkatan">Booking Tiket</a></li>
+>>>>>>> 6f56232b44448f2d6e3a9865f3938bc8a0c735be
                             <li class="scroll-to-section"><a href="blog">Inspirasi Wisata</a></li>
                             <li class="scroll-to-section"><a href="prokescovid" class="active">Travel Aman</a></li>
                         </ul>
@@ -95,8 +101,7 @@ https://templatemo.com/tm-571-hexashop
         <div class="container">
             <div class="row">
                 <h4>Dear Mitra Pelancong,</h4>
-                <h6> Mari bersama-sama kita menjaga diri dan sesama dengan tetap mengikuti prokes dan simak info-info
-                    berikut yuk;</h6>
+                <h6> Mari bersama-sama kita menjaga diri dan sesama dengan tetap mengikuti prokes dan simak info-info berikut yuk;</h6>
                 <br><br>
                 <div class="left-image">
                     <img src="assets/images/mencegahcovid.png" alt="">
@@ -108,8 +113,8 @@ https://templatemo.com/tm-571-hexashop
                 <span>Yap, bener banget! Keamanan bersama dimulai dari menjaga diri sendiri. Seperti sebuah pepatah yang
                     mengatakan:</span>
 
-                <h6>"Jika ingin berjalan cepat, maka jalanlah sendiri. Jika ingin berjalan jauh, maka jalanlah
-                    bersama-sama."</h6>
+                <h6>"Jika ingin berjalan cepat, maka jalanlah sendiri. Jika ingin berjalan jauh, maka jalanlah bersama-sama."
+                </h6>
                 <br> <br>
                 <span>Prokes apa saja sih yang harus dilakukan? Nah! berikut adalah infografis resmi dari Kementrian
                     Kesehatan Indonesia</span>
@@ -192,21 +197,19 @@ https://templatemo.com/tm-571-hexashop
     <script src="assets/js/custom.js"></script>
 
     <script>
-
-        $(function () {
+        $(function() {
             var selectedClass = "";
-            $("p").click(function () {
+            $("p").click(function() {
                 selectedClass = $(this).attr("data-rel");
                 $("#portfolio").fadeTo(50, 0.1);
                 $("#portfolio div").not("." + selectedClass).fadeOut();
-                setTimeout(function () {
+                setTimeout(function() {
                     $("." + selectedClass).fadeIn();
                     $("#portfolio").fadeTo(50, 1);
                 }, 500);
 
             });
         });
-
     </script>
 
 </body>

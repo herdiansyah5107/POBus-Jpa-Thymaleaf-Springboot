@@ -24,13 +24,21 @@ public interface KeberangkatanRepository extends JpaRepository<Keberangkatan, Lo
 	
 	@Query(value ="SELECT booking.id_keberangkatan, keberangkatan.tanggal as waktu, "
 			+ "jurusan.terminal_awal, jurusan.terminal_akhir, keberangkatan.kelas, "
-			+ "keberangkatan.harga, bus.nama_perusahaan as Perusahaan, "
+			+ "keberangkatan.harga, bus.nama_perusahaan as Perusahaan, bus.kapasitas, "
 			+ "if(bus.kapasitas-count(booking.id_keberangkatan)=0,\"Full\",bus.kapasitas-count(booking.id_keberangkatan)) as kursi_free "
 			+ "from keberangkatan LEFT join booking on keberangkatan.id=booking.id_keberangkatan LEFT JOIN "
 			+ "jurusan on keberangkatan.id_jurusan=jurusan.id LEFT JOIN bus on keberangkatan.no_polisi=bus.`no_polisi` "
-			+ "GROUP by keberangkatan.`id`", nativeQuery =true)
-			List<KursiKosong> getAll();
+			+ "GROUP by keberangkatan.`id` HAVING COUNT(booking.id_keberangkatan) < bus.kapasitas", nativeQuery =true)
+	List<KursiKosong> getAll();
 
+	@Query(value ="SELECT booking.id_keberangkatan, keberangkatan.tanggal as waktu, "
+		+ "jurusan.terminal_awal, jurusan.terminal_akhir, keberangkatan.kelas, "
+		+ "keberangkatan.harga, bus.nama_perusahaan as Perusahaan, bus.kapasitas, "
+		+ "if(bus.kapasitas-count(booking.id_keberangkatan)=0,\"Full\",bus.kapasitas-count(booking.id_keberangkatan)) as kursi_free "
+		+ "from keberangkatan LEFT join booking on keberangkatan.id=booking.id_keberangkatan LEFT JOIN "
+		+ "jurusan on keberangkatan.id_jurusan=jurusan.id LEFT JOIN bus on keberangkatan.no_polisi=bus.`no_polisi` "
+		+ "GROUP by keberangkatan.`id` HAVING COUNT(booking.id_keberangkatan) = bus.kapasitas", nativeQuery =true)
+	List<KursiKosong> getKeberangkatanFull();
 	
 
 
