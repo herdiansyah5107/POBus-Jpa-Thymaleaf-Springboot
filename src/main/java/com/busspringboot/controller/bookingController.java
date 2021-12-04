@@ -3,8 +3,8 @@ package com.busspringboot.controller;
 import java.util.List;
 
 import com.busspringboot.model.Booking;
-import com.busspringboot.model.BookingDetail;
 import com.busspringboot.model.Keberangkatan;
+import com.busspringboot.model.Keberangkatandetail;
 import com.busspringboot.model.KursiKosong;
 import com.busspringboot.model.Penumpang;
 import com.busspringboot.repository.BookingRepository;
@@ -29,7 +29,6 @@ public class bookingController {
 
     @Autowired
     KeberangkatanRepository keberangkatanRepo;
-
 
     //untuk memnuat booking pemesanan 
 	@GetMapping("/formbooking")
@@ -57,7 +56,31 @@ public class bookingController {
 	 model.addAttribute("data", hasilSimpan.get(hasilSimpan.size()-1));
 	 return "bookingdetail2";
 	 }
-		
+	
+	//untuk mencari keberangkatan
+	@GetMapping("/carikeberangkatan")
+	public String getKeberangkatan(Model model) {
+	model.addAttribute("formBerangkat", new Keberangkatan() );
+	return "carikeberangkatan";
+	}
+
+	//untuk mencari detail keberangkatan setelah formBerangkat
+	@PostMapping("/checkkeberangkatan")
+	public String getBerangkat(@ModelAttribute("formBerangkat")
+	Keberangkatan formBerangkat, Model model) {
+	String tanggal = formBerangkat.getTanggal();
+	String terminal_awal = formBerangkat.getId_jurusan().getTerminal_awal();
+	List<Keberangkatandetail> hasil=keberangkatanRepo.getDetail(terminal_awal,tanggal);
+	String output;
+		if(hasil.size()==0) {
+		output = "kenihilankeberangkatan";	
+		}else {
+		keberangkatanRepo.getDetail(terminal_awal,tanggal);	
+		model.addAttribute("data", hasil);	
+		output= "listdetailkeberangkatan";
+		}
+		return output;
+		}
 
     
 }

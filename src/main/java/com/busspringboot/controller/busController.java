@@ -12,10 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-
-
-import com.busspringboot.model.Keberangkatan;
-import com.busspringboot.model.Keberangkatandetail;
 import com.busspringboot.model.Penumpang;
 
 import com.busspringboot.repository.BookingRepository;
@@ -29,93 +25,70 @@ public class busController {
 
 	@Autowired
 	busRepository busRepo;
-	
+
 	@Autowired
 	penumpangRepository penumpangRepo;
-	
+
 	@Autowired
 	KeberangkatanRepository keberangkatanRepo;
-	
+
 	@Autowired
 	BookingRepository bookingRepo;
-	
-	
-	//untuk menu awal
+
+	// untuk menu awal
 	@GetMapping("bustrapel")
 	public String getbustrapel() {
 		return "index";
 	}
-	
-	
-	//untuk login penumpang
+
+	@GetMapping("blog")
+	public String getblog() {
+		return "blog";
+	}
+
+	@GetMapping("prokescovid")
+	public String getprokescovid() {
+		return "prokescovid";
+	}
+
+	// untuk login penumpang
 	@GetMapping("/loginpenumpang")
-	public String getForm(Model model){
-		model.addAttribute("penumpangData",new Penumpang());
+	public String getForm(Model model) {
+		model.addAttribute("penumpangData", new Penumpang());
 		return "formlogin";
 	}
-	//untuk mencheck penumpang
+
+	// untuk mencheck penumpang
 	@RequestMapping("/checkpenumpang")
-	public String getPenumpang (@ModelAttribute("penumpangData")
-	Penumpang penumpangData,Model model){
-		String nik =penumpangData.getNik();
-		List<Penumpang> hasil= penumpangRepo.findByNik(nik);	
+	public String getPenumpang(@ModelAttribute("penumpangData") Penumpang penumpangData, Model model) {
+		String nik = penumpangData.getNik();
+		List<Penumpang> hasil = penumpangRepo.findByNik(nik);
 		String output;
-		if(hasil.size()==0) {
+		if (hasil.size() == 0) {
 			output = "kenihilan";
-		}else {
-		penumpangRepo.findByNik(nik);		
-		model.addAttribute("penumpangData", hasil);	
-		output= "detailpenumpang";
+		} else {
+			penumpangRepo.findByNik(nik);
+			model.addAttribute("penumpangData", hasil);
+			output = "detailpenumpang";
 		}
 		return output;
 	}
-	
-//untuk daftar penumpang
+
+	// untuk daftar penumpang
 	@GetMapping("/daftar")
-	public String getFormPenumpang(Model model){
+	public String getFormPenumpang(Model model) {
 		model.addAttribute("penumpangData", new Penumpang());
 		return "formpenumpangbaru";
 	}
-//untuk daftar penumpang
+
+	// untuk daftar penumpang
 	@PostMapping("/createpenumpang")
-	public String createPenumpang(@ModelAttribute("penumpangData")Penumpang penumpangData,Model model){
-//	String nik =penumpangData.getNik();	
-//	List<Penumpang> hasil= penumpangRepo.findByNik(nik);	
-	penumpangRepo.save(penumpangData);	
-//	model.addAttribute("data", hasil);	
-	return "detailpenumpang";
+	public String createPenumpang(@ModelAttribute("penumpangData") Penumpang penumpangData, Model model) {
+		// String nik =penumpangData.getNik();
+		// List<Penumpang> hasil= penumpangRepo.findByNik(nik);
+		penumpangRepo.save(penumpangData);
+		// model.addAttribute("data", hasil);
+		return "detailpenumpang";
 	}
-	
-//untuk mencari keberangkatan
-	@GetMapping("/carikeberangkatan")
-	public String getKeberangkatan(Model model) {
-	model.addAttribute("formBerangkat", new Keberangkatan() );
-	return "carikeberangkatan";
-	}
-//untuk mencari detail keberangkatan setelah formBerangkat
-	@PostMapping("/checkkeberangkatan")
-	public String getBerangkat(@ModelAttribute("formBerangkat")
-	Keberangkatan formBerangkat, Model model) {
-	String tanggal = formBerangkat.getTanggal();
-	String terminal_awal = formBerangkat.getId_jurusan().getTerminal_awal();
-	List<Keberangkatandetail> hasil=keberangkatanRepo.getDetail(terminal_awal,tanggal);
-	String output;
-		if(hasil.size()==0) {
-		output = "kenihilankeberangkatan";	
-		}else {
-		keberangkatanRepo.getDetail(terminal_awal,tanggal);	
-		model.addAttribute("data", hasil);	
-		output= "listdetailkeberangkatan";
-		}
-		return output;
-		}
-
-
-		
-
-
 
 }
-
-	
-
