@@ -75,56 +75,6 @@
         </div>
     </header>
     <!-- ***** Header Area End ***** -->
-
-    <div id="id">
-
-        <div class="booking-form" id="username">
-            <div class="container">
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="section-heading">
-                            <div class="col-md-13">
-                                <div class="contact-form">
-                                    <div class="p-3 border bg-light">
-                                        <p font size="20" style="margin-top: 100px" class="Color1">
-                                            <h5 style="margin-bottom: 10px;">
-                                                <b>Cari Keberangkatan</b>
-                                            </h5>
-                                        </p>
-                                        <form th:object="${formBerangkat}" th:action="@{/checkkeberangkatan}" method="post">
-                                            <div class="form-group">
-                                                <div class="col-lg-4 col-md-12 col-sm-12">
-                                                    <label for="exampleInputPassword1">Tanggal</label>
-                                                    <input type="text" class="form-control" id="inputtanggal" placeholder="Tanggal Keberangkatan" required th:field="*{tanggal}">
-                                                </div>
-                                                <fieldset>
-                                                    <div class="form-group">
-                                                        <div class="col-lg-4 col-md-12 col-sm-12">
-                                                            <label for="exampleInputPassword1">Terminal Keberangkatan</label>
-                                                            <input type="text" class="form-control" id="inputterminal" placeholder="Nama Terminal" required th:field="*{id_jurusan.terminal_awal}">
-                                                        </div>
-
-                                                    </div>
-
-                                                </fieldset>
-                                                <button type="submit" class="btn btn-primary" style="text-align:justify">submit </button>
-
-
-                                            </div>
-                                    </div>
-                                    </form>
-
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
     <div id="id">
         <div class="booking-form" id="username">
             <div class="container">
@@ -134,47 +84,7 @@
                             <div class="col-md-13">
                                 <div class="contact-form">
                                     <div class="p-3 border bg-light">
-                                        <p class="Color1">
-                                            <h5 style="margin-bottom: 10px;">
-                                                <b>Booking Keberangkatan</b>
-                                            </h5>
-                                        </p>
-                                        <form th:object="${dataBooking}" th:action="@{/pesanbooking}" method="POST">
-                                            <div class="form-group">
-                                                <div class="col-lg-4 col-md-12 col-sm-12">
-                                                    <label for="exampleInputPassword1">ID Keberangkatan</label>
-                                                    <input type="text" class="form-control" id="inputidkeberangkatan" placeholder="Input Id Keberangkatan" required th:field="*{id_keberangkatan.id}">
-                                                </div>
-                                                <fieldset>
-                                                    <div class="form-group">
-                                                        <div class="col-lg-4 col-md-12 col-sm-12">
-                                                            <label for="exampleInputPassword1">User name</label>
-                                                            <input type="text" class="form-control" id="username" placeholder="Input Username" required th:field="*{nik.nik}">
-                                                        </div>
-                                                </fieldset>
-                                                <button type="submit" class="btn btn-primary" style="text-align:justify">Booking </button>
-                                                </div>
-                                            </div>
-                                    </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="id">
-        <div class="booking-form" id="username">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="section-heading">
-                            <div class="col-md-13">
-                                <div class="contact-form">
-                                    <div class="p-3 border bg-light">
-                                        <h5 align="center" class="Color1"> <b>Keberangkatan yang Tersedia</b>
+                                        <h5 align="center" class="Color1" style="margin-top: 100px"> <b>Keberangkatan yang Tersedia</b>
                                         </h5>
                                         <table class="table">
                                             <tr class="thead">
@@ -199,6 +109,96 @@
                                             </tr>
 
                                         </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="id">
+
+            <div class="booking-form" id="username">
+                <div class="container">
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-heading">
+                                <div class="col-md-13">
+                                    <div class="contact-form">
+                                        <div class="p-3 border bg-light">
+                                            <p font size="20" class="Color1">
+                                                <h5 style="margin-bottom: 10px;">
+                                                    <b>Cari Keberangkatan</b>
+                                                </h5>
+                                            </p>
+                                            <form th:object="${formBerangkat}" th:action="@{/checkkeberangkatan}" method="post">
+                                                <div class="form-group">
+                                                    <div class="col-lg-4 col-md-12 col-sm-12">
+                                                        <label for="exampleInputPassword1">Tanggal</label>
+                                                        <input type="text" class="form-control" id="inputtanggal" placeholder="Tanggal Keberangkatan" required th:field="*{tanggal}">
+                                                    </div>
+                                                    <fieldset>
+                                                        <div class="form-group">
+                                                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                                                <label for="exampleInputPassword1">Terminal Keberangkatan</label>
+                                                                <input type="text" class="form-control" id="inputterminal" placeholder="Nama Terminal" required th:field="*{id_jurusan.terminal_awal}">
+                                                            </div>
+
+                                                        </div>
+
+                                                    </fieldset>
+                                                    <button type="submit" class="btn btn-primary" style="text-align:justify">submit </button>
+
+
+                                                </div>
+                                        </div>
+                                        </form>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div id="id">
+            <div class="booking-form" id="username">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="section-heading">
+                                <div class="col-md-13">
+                                    <div class="contact-form">
+                                        <div class="p-3 border bg-light">
+                                            <p class="Color1">
+                                                <h5 style="margin-bottom: 10px;">
+                                                    <b>Booking Keberangkatan</b>
+                                                </h5>
+                                            </p>
+                                            <form th:object="${dataBooking}" th:action="@{/pesanbooking}" method="POST">
+                                                <div class="form-group">
+                                                    <div class="col-lg-4 col-md-12 col-sm-12">
+                                                        <label for="exampleInputPassword1">ID Keberangkatan</label>
+                                                        <input type="text" class="form-control" id="inputidkeberangkatan" placeholder="Input Id Keberangkatan" required th:field="*{id_keberangkatan.id}">
+                                                    </div>
+                                                    <fieldset>
+                                                        <div class="form-group">
+                                                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                                                <label for="exampleInputPassword1">User name</label>
+                                                                <input type="text" class="form-control" id="username" placeholder="Input Username" required th:field="*{nik.nik}">
+                                                            </div>
+                                                    </fieldset>
+                                                    <button type="submit" class="btn btn-primary" style="text-align:justify">Booking </button>
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>
