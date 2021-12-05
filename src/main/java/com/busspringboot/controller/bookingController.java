@@ -3,13 +3,11 @@ package com.busspringboot.controller;
 import java.util.List;
 
 import com.busspringboot.model.Booking;
-
-
 import com.busspringboot.model.Keberangkatan;
 import com.busspringboot.model.Keberangkatandetail;
 import com.busspringboot.model.KursiKosong;
 import com.busspringboot.model.Penumpang;
-
+import com.busspringboot.repository.BookingRepository;
 import com.busspringboot.repository.KeberangkatanRepository;
 import com.busspringboot.repository.penumpangRepository;
 
@@ -56,39 +54,20 @@ public class bookingController {
 	 dataBooking.setNik(penumpangSementara.get(0));
 	 Keberangkatan keberangkatanSementara =keberangkatanRepo.getById(id_keberangkatan);
 	 dataBooking.setId_keberangkatan(keberangkatanSementara);
-<<<<<<< HEAD
-		List<Keberangkatandetail> sisaKursi= bookingRepo.getDetail(id_keberangkatan);
-	 	if(sisaKursi.isEmpty()){
-			 return "kenihilan";
-		 }else{
-			bookingRepo.save(dataBooking);
-			List<Booking> hasilSimpan = bookingRepo.findByNik(dataBooking.getNik());
-			model.addAttribute("data", hasilSimpan.get(hasilSimpan.size()-1));
-			return "bookingdetail2";
-			}
-		 }
-	
-=======
 	 bookingRepo.save(dataBooking);
 	 List<Booking> hasilSimpan = bookingRepo.findByNik(dataBooking.getNik());
 	 model.addAttribute("data", hasilSimpan.get(hasilSimpan.size()-1));
 	 return "bookingdetail2";
 	 }
 	}
->>>>>>> 6f56232b44448f2d6e3a9865f3938bc8a0c735be
 	
 	//untuk mencari keberangkatan
 	@GetMapping("/carikeberangkatan")
 	public String getKeberangkatan(Model model) {
-<<<<<<< HEAD
-	model.addAttribute("dataBooking", new Booking() );
-=======
 	model.addAttribute("dataBooking",new Booking());
->>>>>>> 6f56232b44448f2d6e3a9865f3938bc8a0c735be
 	List<KursiKosong>keberangkatan=keberangkatanRepo.getAll();
 	model.addAttribute("data",keberangkatan);
 	model.addAttribute("formBerangkat", new Keberangkatan() );
-
 	return "carikeberangkatan";
 	}
 

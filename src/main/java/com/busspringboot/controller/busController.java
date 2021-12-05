@@ -36,7 +36,7 @@ public class busController {
 	BookingRepository bookingRepo;
 
 	// untuk menu awal
-	@GetMapping("/bustrapel")
+	@GetMapping("bustrapel")
 	public String getbustrapel() {
 		return "index";
 	}
