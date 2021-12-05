@@ -47,7 +47,7 @@ public class bookingController {
 	 long id_keberangkatan = dataBooking.getId_keberangkatan().getId();
 	 String nik = dataBooking.getNik().getNik();
 	 List<Penumpang>penumpangSementara=penumpangRepo.getByNik(nik);
-	 List<KursiKosong>fullTank = keberangkatanRepo.getKeberangkatanFull();
+	 List<KursiKosong>fullTank = keberangkatanRepo.getKeberangkatanFull(id_keberangkatan);
 	 if(penumpangSementara.size()==0){
 	 	return "kenihilan";
 	 }else if(fullTank.size() != 0){

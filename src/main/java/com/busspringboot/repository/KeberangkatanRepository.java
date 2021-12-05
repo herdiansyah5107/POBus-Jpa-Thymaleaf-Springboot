@@ -37,8 +37,8 @@ public interface KeberangkatanRepository extends JpaRepository<Keberangkatan, Lo
 		+ "if(bus.kapasitas-count(booking.id_keberangkatan)=0,\"Full\",bus.kapasitas-count(booking.id_keberangkatan)) as kursi_free "
 		+ "from keberangkatan LEFT join booking on keberangkatan.id=booking.id_keberangkatan LEFT JOIN "
 		+ "jurusan on keberangkatan.id_jurusan=jurusan.id LEFT JOIN bus on keberangkatan.no_polisi=bus.`no_polisi` "
-		+ "GROUP by keberangkatan.`id` HAVING COUNT(booking.id_keberangkatan) = bus.kapasitas", nativeQuery =true)
-	List<KursiKosong> getKeberangkatanFull();
+		+ "WHERE booking.id_keberangkatan = ?1 GROUP by keberangkatan.`id` HAVING COUNT(booking.id_keberangkatan) = bus.kapasitas", nativeQuery =true)
+	List<KursiKosong> getKeberangkatanFull(long id);
 	
 
 
