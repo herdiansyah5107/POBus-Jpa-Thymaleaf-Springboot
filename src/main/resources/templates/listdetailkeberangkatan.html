@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+                            <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -57,13 +57,16 @@
                         <!-- ***** Logo End ***** -->
                         <!-- ***** Menu Start ***** -->
                         <ul class="nav">
-                            <li class="scroll-to-section"><a href="/bustrapel">Home</a></li>
-                            <li class="scroll-to-section"><a href="/bustrapel#promo">Promo</a></li>
-                            <li class="scroll-to-section"><a href="/bustrapel#testi">Testimoni</a></li>
-                            <li class="scroll-to-section"><a href="carikeberangkatan" class="active">Booking Tiket</a></li>
+                            <li class="scroll-to-section"><a href="#top" class="active">Home</a></li>
+                            <li class="scroll-to-section"><a href="#promo">Promo</a></li>
+                            <li class="scroll-to-section"><a href="#testi">Testimoni</a></li>
+                            <li class="scroll-to-section"><a href="carikeberangkatan">Booking Tiket</a></li>
                             <li class="scroll-to-section"><a href="blog">Inspirasi Wisata</a></li>
                             <li class="scroll-to-section"><a href="prokescovid">Travel Aman</a></li>
-
+                            <li class="scroll-to-section">
+                                <form action="/login" method="get"><button type="submit" class="btn btn-primary btn-sm">Login</button>
+                                </form>
+                            </li>
                         </ul>
                         <a class='menu-trigger'>
                             <span>Menu</span>
@@ -85,8 +88,8 @@
         </div>
     </div>
     <div class="container" style="margin-top: 10px;">
-        <table class="table">
 
+        <table class="table">
             <tr class="thead">
                 <td scope="col"> Id</td>
                 <td scope="raw">Trayek</td>
@@ -105,9 +108,11 @@
                 <td th:text=${keberangkatan.kelas}></td>
                 <td th:text=${keberangkatan.harga}></td>
                 <td>
-                    <form action="/pesanbooking" method="post">
+                    <form th:action="@{'/pesanbooking?id='+${keberangkatan.id}}" th:object="${dataBooking}" method="post">
+                        <input type="hidden" th:field="*{id_keberangkatan.id}" value="${keberangkatan.id}">
                         <button type="submit" class="btn btn-primary btn-sm">Book Now!</button>
                     </form>
+                    <!-- <a th:href="@{'/pesanbooking?id='+${keberangkatan.id}}" class="btn btn-primary btn-sm">Book Now!</a> -->
                 </td>
 
             </tr>

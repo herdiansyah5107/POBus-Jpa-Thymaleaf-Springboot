@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import com.busspringboot.model.Booking;
 import com.busspringboot.model.BookingDetail;
+
+
 import com.busspringboot.model.Penumpang;
 
 
@@ -23,6 +25,14 @@ public interface BookingRepository extends JpaRepository<Booking, Long>{
 	List<BookingDetail> getDetail(long id_keberangkatan, String nik);
 
 	List<Booking> findByNik(Penumpang nik);
+
+			
+		
+
+
+
+
+
 
 	
 		

@@ -20,5 +20,6 @@ public class Penumpang {
 	private String nik;
 	private String nama;
 	private String telpon;
+	private String status;
 	
 }

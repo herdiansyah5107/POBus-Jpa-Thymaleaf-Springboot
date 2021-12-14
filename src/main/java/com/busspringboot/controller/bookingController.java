@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class bookingController {
@@ -40,12 +41,13 @@ public class bookingController {
 	}
      //menampilkan keberhasilan pemesanan	
 	 @PostMapping("/pesanbooking")
-	 public String getBooking(@ModelAttribute("dataBooking")Booking dataBooking,
+	 public String getBooking(@RequestParam(value = "id",defaultValue = "")long id, @ModelAttribute("dataBooking")Booking dataBooking,
 	 Model model){
 	 long id_keberangkatan = dataBooking.getId_keberangkatan().getId();
 	 String nik = dataBooking.getNik().getNik();
 	 List<Penumpang>penumpangSementara=penumpangRepo.getByNik(nik);
-	 List<KursiKosong>fullTank = keberangkatanRepo.getKeberangkatanFull();
+	 List<KursiKosong>fullTank = keberangkatanRepo.getKeberangkatanFull(id_keberangkatan);
+	
 	 if(penumpangSementara.size()==0){
 	 	return "kenihilan";
 	 }else if(fullTank.size() != 0){
@@ -84,6 +86,7 @@ public class bookingController {
 		}else {
 		keberangkatanRepo.getDetail(terminal_awal,tanggal);	
 		model.addAttribute("data", hasil);	
+		model.addAttribute("dataBooking", new Booking());
 		output= "listdetailkeberangkatan";
 		}
 		return output;
