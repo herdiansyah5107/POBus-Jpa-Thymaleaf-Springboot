@@ -41,13 +41,12 @@ public class bookingController {
 	}
      //menampilkan keberhasilan pemesanan	
 	 @PostMapping("/pesanbooking")
-	 public String getBooking(@RequestParam(value = "id",defaultValue = "")long id, @ModelAttribute("dataBooking")Booking dataBooking,
+	 public Long getBooking(@RequestParam(value = "id_kebereangkatan",defaultValue = "id_keberangkatan")long id, @ModelAttribute("dataBooking")Booking dataBooking,
 	 Model model){
 	 long id_keberangkatan = dataBooking.getId_keberangkatan().getId();
 	 String nik = dataBooking.getNik().getNik();
 	 List<Penumpang>penumpangSementara=penumpangRepo.getByNik(nik);
 	 List<KursiKosong>fullTank = keberangkatanRepo.getKeberangkatanFull(id_keberangkatan);
-	
 	 if(penumpangSementara.size()==0){
 	 	return "kenihilan";
 	 }else if(fullTank.size() != 0){
